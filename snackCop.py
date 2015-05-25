@@ -60,7 +60,8 @@ def motionCheck():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(7, GPIO.IN)
     snappingPhotos = False
-    while True:
+    running = True
+    while running:
         try:
             input = GPIO.input(7) #listen for signal
             if(input == 1):
@@ -73,7 +74,7 @@ def motionCheck():
                 snappingPhotos = False
                 sleep(.5)
         except KeyboardInterrupt:
-            break
+            running = False
 
     GPIO.cleanup()
 
